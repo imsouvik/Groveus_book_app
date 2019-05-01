@@ -1,0 +1,125 @@
+////////////////////////////////////////////////
+:::Author: Mahesh
+::: Version: 1.0
+:::Released date: 15/3/2016
+:::Comfortable with angular js only
+:::this timepicker was takesn from 
+:::[ui-bootstrap-tpls.js]
+:::and it is customized
+
+//*************Documentation ***************************/
+....................................................................
+ Hi Friends i am very glad to share you this timepicker with angularjs.
+ many friends wants timepicker with angularjs. So, here is the timepicker, you can customize and do whatever you want to do.
+ 
+ i am giveing you few steps to use this timepicker.
+
+stpe1:-
+
+copy this line 
+/////////////////////////
+$scope.time1 = new Date();
+//////////////////////// 
+to your controller
+  ..........................................................
+ // if you want to show and hide meridian(AM or PM) with checkbox then use this line (below)
+//$scope.showMeridian = true;
+
+Step2:-
+
+link the timeTtemplate.js file to you footer
+
+Step3:
+
+Copy following code to you html page.
+"""""""""""""""""""""""""""""''""""""""""""""""""""""""""'
+<div class='well'>
+				<form name='form' class='form-horizontal' role='form'>
+
+					<div class='form-group well'>
+						<label class='col-sm-3 control-label'>Timepicker</label>
+						<div class='col-sm-9'>
+							<timepicker ng-model="mytime" show-meridian='showMeridian'/>
+						</div>
+					</div>
+
+
+					<div class='form-group'>
+						<div class="col-sm-offset-3 col-sm-9">
+							<div class="checkbox">
+								<label> <input type="checkbox" name='showMeridian' ng-model='showMeridian' />
+									Show meridian ({{showMeridian}})
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class='form-group'> 
+						<div class="col-sm-offset-3 col-sm-9">Value: {{mytime | date: 'shortTime'}}</div>
+					</div>
+				</form>
+</div>
+"""""""""""""""""""""""""""""""""""""""""""""""""""'
+
+If you want mini version html then copy this line
+.....................................................
+<div class='form-group'>
+	<label class='col-sm-3 control-label'>Timepicker</label>
+		<timepicker ng-model="mytime"/>
+</div>
+<textarea rows="" cols="">{{mytime | date: 'shortTime'}}</textarea>
+.....................................................
+
+Congratulation now you have a beutiful datepicker
+
+note: Try to bind the date picker in textarea.
+
+thanks 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Template code
+ ********************************************************************
+ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
+
+angular.module("template/timepicker/timepicker.html", [])
+.run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/timepicker/timepicker.html",
+    "<table>\n" +
+    "	<tbody>\n" +
+    "		<tr class=\"text-center\">\n" +
+    "			<td><a ng-click=\"incrementHours()\" class=\"btn btn-link\"><span class=\"fa fa-chevron-up\"></span></a></td>\n" +
+    "			<td>&nbsp;</td>\n" +
+    "			<td><a ng-click=\"incrementMinutes()\" class=\"btn btn-link\"><span class=\"fa fa-chevron-up\"></span></a></td>\n" +
+    "			<td ng-show=\"showMeridian\"></td>\n" +
+    "		</tr>\n" +
+    "		<tr>\n" +
+    "			<td style=\"width:50px;\" class=\"form-group\" ng-class=\"{'has-error': invalidHours}\">\n" +
+    "				<input type=\"text\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"form-control text-center\" ng-mousewheel=\"incrementHours()\" ng-readonly=\"readonlyInput\" maxlength=\"2\">\n" +
+    "			</td>\n" +
+    "			<td>:</td>\n" +
+    "			<td style=\"width:50px;\" class=\"form-group\" ng-class=\"{'has-error': invalidMinutes}\">\n" +
+    "				<input type=\"text\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"form-control text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\">\n" +
+    "			</td>\n" +
+    "			<td ng-show=\"showMeridian\"><button type=\"button\" class=\"btn btn-default text-center\" ng-click=\"toggleMeridian()\">{{meridian}}</button></td>\n" +
+    "		</tr>\n" +
+    "		<tr class=\"text-center\">\n" +
+    "			<td><a ng-click=\"decrementHours()\" class=\"btn btn-link\"><span class=\"fa fa-chevron-down\"></span></a></td>\n" +
+    "			<td>&nbsp;</td>\n" +
+    "			<td><a ng-click=\"decrementMinutes()\" class=\"btn btn-link\"><span class=\"fa fa-chevron-down\"></span></a></td>\n" +
+    "			<td ng-show=\"showMeridian\"></td>\n" +
+    "		</tr>\n" +
+    "	</tbody>\n" +
+    "</table>\n" +
+    "");
+}]);
+ 
+ ********************************************************************
+ 
+ 
+ 
